@@ -19,101 +19,88 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 .lib-btn { background: none; border: 1px solid #D8D4CA; border-radius: 20px; padding: 5px 14px; cursor: pointer; font-size: 12px; color: #8a8a7a; font-family: 'Helvetica Neue', sans-serif; }
 main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 0 60px; }
 .screen { animation: fadeUp 0.3s ease; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0.4} }
 
-/* Step bar */
-.step-bar { display: flex; gap: 6px; margin-bottom: 32px; }
+.step-bar { display: flex; gap: 5px; margin-bottom: 32px; }
 .step-dot { height: 2px; border-radius: 2px; flex: 1; background: #D8D4CA; opacity: 0.25; transition: all 0.3s; }
 .step-dot.done { background: #C4A35A; opacity: 0.5; }
 .step-dot.active { background: #C4A35A; opacity: 1; }
 
-/* Headings */
-h1.q { font-size: clamp(26px,5vw,40px); font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
+h1.q { font-size: clamp(24px,5vw,38px); font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
 h1.q em { font-style: italic; color: #C4A35A; }
-.sub { font-size: 14px; color: #8a8a7a; margin-bottom: 32px; font-family: ‘Helvetica Neue’, sans-serif; }
+.sub { font-size: 14px; color: #8a8a7a; margin-bottom: 28px; font-family: ‘Helvetica Neue’, sans-serif; }
 .back-btn { background: none; border: none; cursor: pointer; font-size: 13px; color: #8a8a7a; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 24px; padding: 0; display: block; }
+.section-title { font-size: 12px; color: #8a8a7a; font-family: ‘Helvetica Neue’, sans-serif; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 12px; }
 
-/* Cards */
-.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 32px; }
-.grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
-.dark-card { background: #1C1C1E; border-radius: 16px; padding: 20px 16px; cursor: pointer; transition: all 0.2s; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 28px; }
+.grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 28px; }
+.dark-card { background: #1C1C1E; border-radius: 14px; padding: 18px 14px; cursor: pointer; transition: all 0.2s; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 .dark-card:hover { transform: scale(1.02); }
 .dark-card.selected { background: #C4A35A; transform: scale(1.03); box-shadow: 0 6px 20px rgba(196,163,90,0.4); }
-.dark-card .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
-.dark-card .label { font-size: 15px; font-weight: 700; color: #E5E5E5; font-family: Georgia, serif; margin-bottom: 3px; }
-.dark-card .sublabel { font-size: 12px; color: #888; font-family: ‘Helvetica Neue’, sans-serif; line-height: 1.3; }
+.dark-card .emoji { font-size: 26px; margin-bottom: 9px; display: block; }
+.dark-card .label { font-size: 14px; font-weight: 700; color: #E5E5E5; font-family: Georgia, serif; margin-bottom: 2px; }
+.dark-card .sublabel { font-size: 11px; color: #888; font-family: ‘Helvetica Neue’, sans-serif; line-height: 1.3; }
+.dark-card.selected .label { color: #fff; }
 .dark-card.selected .sublabel { color: rgba(255,255,255,0.7); }
 
-/* Pills */
-.pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-.pill { background: #3A3A3C; color: #E5E5E5; border: none; border-radius: 24px; padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; }
-.pill.selected { background: #C4A35A; color: #1C1C1E; box-shadow: 0 4px 12px rgba(196,163,90,0.4); }
-.plat-pill { background: #1C1C1E; color: #E5E5E5; border: none; border-radius: 24px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; }
-.plat-pill.selected { background: #C4A35A; color: #1C1C1E; }
+.pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill { background: #3A3A3C; color: #E5E5E5; border: none; border-radius: 22px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; }
+.pill.selected { background: #C4A35A; color: #1C1C1E; }
+.pill.optional { background: #2a2a2c; color: #777; border: 1px dashed #444; }
+.pill.optional.selected { background: #C4A35A; color: #1C1C1E; border: none; }
 
-/* Continue btn */
-.cont-btn { width: 100%; padding: 16px; border-radius: 14px; background: #F0E8D0; color: #1C1C1E; border: none; cursor: default; font-size: 16px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; opacity: 0.4; }
+.cont-btn { width: 100%; padding: 15px; border-radius: 14px; background: #F0E8D0; color: #1C1C1E; border: none; cursor: default; font-size: 16px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; opacity: 0.35; }
 .cont-btn.active { opacity: 1; cursor: pointer; }
 .find-btn { width: 100%; padding: 16px; border-radius: 14px; background: #C4A35A; color: #1C1C1E; border: none; cursor: pointer; font-size: 15px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
 .outline-btn { width: 100%; padding: 12px 20px; border-radius: 14px; background: transparent; color: #8a8a7a; border: 1.5px solid #D8D4CA; cursor: pointer; font-size: 13px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
 .alt-btn { width: 100%; padding: 13px; border-radius: 14px; background: #C4A35A; color: #1C1C1E; border: none; cursor: pointer; font-size: 13px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
 
-/* Loading */
 .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 0; gap: 28px; }
-.loading-emoji { font-size: 56px; }
-.loading h2 { font-size: 20px; font-style: italic; margin-bottom: 8px; text-align: center; }
-.loading p { font-size: 14px; color: #8a8a7a; font-family: ‘Helvetica Neue’, sans-serif; text-align: center; }
-.dots { display: flex; gap: 10px; margin-top: 8px; }
+.dots { display: flex; gap: 10px; }
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #C4A35A; }
 .dot:nth-child(1){animation:pulse 1.2s 0ms ease-in-out infinite;}
 .dot:nth-child(2){animation:pulse 1.2s 220ms ease-in-out infinite;}
 .dot:nth-child(3){animation:pulse 1.2s 440ms ease-in-out infinite;}
 
-/* Result card */
 .result-card { background: #1C1C1E; border-radius: 24px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-.result-visual { position: relative; min-height: 200px; background: #111; overflow: hidden; }
-.result-backdrop { width: 100%; height: 200px; object-fit: cover; opacity: 0.5; display: block; }
-.result-poster { position: absolute; bottom: 0; left: 20px; width: 90px; height: 135px; object-fit: cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-.result-title-area { position: absolute; bottom: 0; right: 20px; padding: 16px 0; }
-.result-title-area.no-poster { left: 20px; }
-.result-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 8px; }
-.badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-family: ‘Helvetica Neue’, sans-serif; }
-.badge-genre { background: rgba(196,163,90,0.25); color: #C4A35A; font-weight: 700; }
-.badge-year { background: rgba(255,255,255,0.15); color: #fff; }
-.result-title { font-size: clamp(16px,3.5vw,22px); font-weight: 700; color: #fff; font-style: italic; line-height: 1.2; font-family: Georgia, serif; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-.result-orig { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; font-family: ‘Helvetica Neue’, sans-serif; }
-.result-body { padding: 20px 22px; }
-.meta-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-.meta-badge { font-size: 12px; padding: 5px 12px; border-radius: 20px; font-family: ‘Helvetica Neue’, sans-serif; }
-.meta-rating { background: rgba(196,163,90,0.15); color: #C4A35A; font-weight: 700; font-size: 13px; text-decoration: none; }
-.meta-info { background: rgba(255,255,255,0.07); color: #aaa; }
-.meta-country { background: rgba(255,255,255,0.04); color: #777; font-size: 11px; }
-.crew-box { margin-bottom: 16px; padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 10px; }
-.crew-line { font-size: 12px; color: #bbb; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 5px; }
+.result-visual { position: relative; min-height: 200px; background: linear-gradient(135deg,#1a2a4a,#0d0d0d); overflow: hidden; }
+.result-backdrop { width: 100%; height: 200px; object-fit: cover; opacity: 0.45; display: block; }
+.result-poster { position: absolute; bottom: 0; left: 20px; width: 88px; height: 132px; object-fit: cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.result-info { position: absolute; bottom: 0; right: 20px; padding: 0 0 16px; }
+.result-info.full { left: 20px; }
+.rbadges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.rbadge { font-size: 11px; padding: 3px 9px; border-radius: 16px; font-family: ‘Helvetica Neue’, sans-serif; }
+.rbadge-g { background: rgba(196,163,90,0.25); color: #C4A35A; font-weight: 700; }
+.rbadge-y { background: rgba(255,255,255,0.15); color: #fff; }
+.result-title { font-size: clamp(15px,3.5vw,21px); font-weight: 700; color: #fff; font-style: italic; line-height: 1.2; font-family: Georgia,serif; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+.result-orig { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; font-family: ‘Helvetica Neue’,sans-serif; }
+.result-body { padding: 18px 20px; }
+.meta-row { display: flex; gap: 7px; margin-bottom: 14px; flex-wrap: wrap; }
+.meta { font-size: 12px; padding: 4px 11px; border-radius: 18px; font-family: ‘Helvetica Neue’,sans-serif; }
+.meta-r { background: rgba(196,163,90,0.15); color: #C4A35A; font-weight: 700; font-size: 13px; }
+.meta-i { background: rgba(255,255,255,0.07); color: #aaa; }
+.meta-c { background: rgba(255,255,255,0.04); color: #777; font-size: 11px; }
+.crew-box { margin-bottom: 14px; padding: 11px 13px; background: rgba(255,255,255,0.04); border-radius: 10px; }
+.crew-line { font-size: 12px; color: #bbb; font-family: ‘Helvetica Neue’,sans-serif; margin-bottom: 5px; }
 .crew-line:last-child { margin-bottom: 0; }
-.crew-label { color: #C4A35A; font-weight: 600; }
-.overview { font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 16px; font-family: ‘Helvetica Neue’, sans-serif; }
+.crew-lbl { color: #C4A35A; font-weight: 600; }
+.overview { font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 14px; font-family: ‘Helvetica Neue’,sans-serif; }
 .action-row { display: flex; gap: 10px; }
-.action-btn { flex: 1; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 14px; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.07); color: #999; }
+.action-btn { flex: 1; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 13px; font-family: ‘Helvetica Neue’,sans-serif; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.07); color: #999; }
 .action-btn.faved { background: rgba(196,163,90,0.2); border-color: #C4A35A; color: #C4A35A; }
 .action-btn.watched { background: rgba(76,175,80,0.15); border-color: #4caf50; color: #4caf50; }
 .btn-stack { display: flex; flex-direction: column; gap: 10px; }
-.no-poster-bg { background: linear-gradient(135deg,#1a2a4a 0%,#0d0d0d 100%); }
-
-/* Error */
-.error-box { background: #fff0f0; border: 1px solid #e05555; border-radius: 16px; padding: 24px; margin-bottom: 16px; }
-.error-title { color: #e05555; font-size: 15px; font-weight: 600; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 8px; }
-.error-msg { color: #e05555; font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 16px; line-height: 1.5; word-break: break-all; }
+.error-box { background: #fff0f0; border: 1px solid #e05555; border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+.skip-link { text-align: center; margin-top: 14px; }
+.skip-link button { background: none; border: none; cursor: pointer; font-size: 12px; color: #8a8a7a; font-family: ‘Helvetica Neue’,sans-serif; text-decoration: underline; }
 
 /* Library */
 .lib-item { background: #1C1C1E; border-radius: 12px; margin-bottom: 10px; overflow: hidden; display: flex; align-items: center; }
-.lib-poster { width: 50px; height: 75px; object-fit: cover; flex-shrink: 0; }
-.lib-info { padding: 12px 14px; flex: 1; min-width: 0; }
-.lib-title { font-size: 14px; font-style: italic; color: #E5E5E5; font-family: Georgia, serif; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lib-meta { font-size: 11px; color: #888; font-family: ‘Helvetica Neue’, sans-serif; }
-.lib-remove { background: none; border: none; cursor: pointer; font-size: 18px; padding: 0 14px; flex-shrink: 0; }
-.section-label { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 12px; }
+.lib-poster { width: 48px; height: 72px; object-fit: cover; flex-shrink: 0; }
+.lib-info { padding: 10px 13px; flex: 1; min-width: 0; }
+.lib-title { font-size: 14px; font-style: italic; color: #E5E5E5; font-family: Georgia,serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lib-meta { font-size: 11px; color: #888; font-family: ‘Helvetica Neue’,sans-serif; margin-top: 2px; }
 </style>
 
 </head>
@@ -133,188 +120,231 @@ h1.q em { font-style: italic; color: #C4A35A; }
 </div>
 
 <script>
-const TMDB_API_KEY = "335a2f58cda20c6358e159fb84253f86";
-const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMzVhMmY1OGNkYTIwYzYzNThlMTU5ZmI4NDI1M2Y4NiIsIm5iZiI6MTc3NDMzNjM2My44NDcwMDAxLCJzdWIiOiI2OWMyMzk2YjZkZTA3NTAzODU3MzVjMTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.bY93AvN9EnkVxWZQQdD1bCNjmqRZJlY08V8ipdQaq_o";
-const TMDB = "https://api.themoviedb.org/3";
-const IMG  = "https://image.tmdb.org/t/p/w500";
-const IMG_BG = "https://image.tmdb.org/t/p/w1280";
+// ── Config ──────────────────────────────────────────────────────────────────
+const TMDB_TOKEN   = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMzVhMmY1OGNkYTIwYzYzNThlMTU5ZmI4NDI1M2Y4NiIsIm5iZiI6MTc3NDMzNjM2My44NDcwMDAxLCJzdWIiOiI2OWMyMzk2YjZkZTA3NTAzODU3MzVjMTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.bY93AvN9EnkVxWZQQdD1bCNjmqRZJlY08V8ipdQaq_o";
+const TMDB_KEY     = "335a2f58cda20c6358e159fb84253f86";
+const TMDB         = "https://api.themoviedb.org/3";
+const IMG          = "https://image.tmdb.org/t/p/w500";
+const IMG_BG       = "https://image.tmdb.org/t/p/w1280";
 
-const PLATFORM_IDS = { "Netflix":8,"Disney+":337,"Amazon Prime":9,"Apple TV+":350,"BluTV":341,"YouTube":192,"Gain":342 };
+// TMDB genre IDs
+const GENRE_IDS = {
+  action:28, adventure:12, animation:16, comedy:35, crime:80,
+  documentary:99, drama:18, fantasy:14, horror:27, mystery:9648,
+  romance:10749, scifi:878, thriller:53, western:37, war:10752,
+  music:10402, history:36, family:10751,
+};
+const PLATFORM_IDS = {Netflix:8,"Disney+":337,"Amazon Prime":9,"Apple TV+":350,BluTV:341,YouTube:192,Gain:342};
+
+// Mood → genre mapping
 const MOOD_GENRES = {
-  rahat:    {movie:[35,10749,16], tv:[35,10766,16]},
-  gulddur:  {movie:[35,10770],    tv:[35]},
-  heyecan:  {movie:[28,53,80],    tv:[80,9648,10759]},
-  duygu:    {movie:[18,10749],    tv:[18]},
-  dusundur: {movie:[878,9648,18], tv:[9648,10765]},
-  aksiyon:  {movie:[28,12,14],    tv:[10759,10765]},
+  rahat:    {movie:[35,10749,16,10751], tv:[35,10766,16]},
+  gulddur:  {movie:[35,10770,10751],    tv:[35]},
+  heyecan:  {movie:[28,53,80,878],      tv:[80,9648,10759]},
+  duygu:    {movie:[18,10749,10751],    tv:[18,10766]},
+  dusundur: {movie:[878,9648,18,36],    tv:[9648,10765,18]},
+  aksiyon:  {movie:[28,12,14,10752],    tv:[10759,10765]},
 };
 
+// Country codes for TMDB
+const COUNTRY_CODES = {
+  TR:"TR", KR:"KR", FR:"FR", US:"US", GB:"GB",
+  JP:"JP", IT:"IT", ES:"ES", DE:"DE", IN:"IN",
+};
+
+// ── State ───────────────────────────────────────────────────────────────────
 let state = {
   lang:"TR", view:"main", step:0,
-  type:null, mood:null, who:null, time:null, platforms:[],
-  result:null, loading:false, error:null,
-  shownIds:[],
-  favorites: JSON.parse(localStorage.getItem("t_favs")||"[]"),
-  watched:   JSON.parse(localStorage.getItem("t_wtch")||"[]"),
+  type:null, mood:null, genre:null, who:null, time:null,
+  country:null, era:null, minRating:6.0,
+  platforms:[],
+  result:null, loading:false, error:null, shownIds:[],
+  favorites: tryParse("t_favs",[]),
+  watched:   tryParse("t_wtch",[]),
 };
 
-function saveFavs(a){ state.favorites=a; localStorage.setItem("t_favs",JSON.stringify(a)); }
-function saveWtch(a){ state.watched=a;   localStorage.setItem("t_wtch",JSON.stringify(a)); }
+function tryParse(k,d){ try{return JSON.parse(localStorage.getItem(k)||"null")||d}catch{return d} }
+function save(k,v){ try{localStorage.setItem(k,JSON.stringify(v))}catch{} }
+function saveFavs(a){ state.favorites=a; save("t_favs",a); }
+function saveWtch(a){ state.watched=a;   save("t_wtch",a); }
 function isFaved(id){ return state.favorites.some(f=>f.id===id); }
 function isWatched(id){ return state.watched.includes(id); }
 
-function setLang(l){
-  state.lang=l;
-  document.getElementById("btnTR").className="lang-btn"+(l==="TR"?" active":"");
-  document.getElementById("btnEN").className="lang-btn"+(l==="EN"?" active":"");
-  render();
-}
-function toggleView(v){ state.view = state.view===v?"main":v; render(); }
-function restart(){ state={...state,view:"main",step:0,type:null,mood:null,who:null,time:null,platforms:[],result:null,loading:false,error:null,shownIds:[]}; render(); }
-function togglePlatform(p){ const i=state.platforms.indexOf(p); if(i>=0)state.platforms.splice(i,1); else state.platforms.push(p); render(); }
-function toggleFav(id,title,year,rating,platform,poster){ const n=isFaved(id)?state.favorites.filter(f=>f.id!==id):[...state.favorites,{id,title,year,rating,platform,poster}]; saveFavs(n); render(); }
-function toggleWtch(id){ const n=isWatched(id)?state.watched.filter(x=>x!==id):[...state.watched,id]; saveWtch(n); render(); }
-function markAndNext(id){ toggleWtch(id); doFind([id]); }
-
-async function tmdbFetch(path, params={}){
-  const url=new URL(TMDB+path);
+// ── API ─────────────────────────────────────────────────────────────────────
+async function tmdbFetch(path, params){
+  const url = new URL(TMDB+path);
   url.searchParams.set("language", state.lang==="TR"?"tr-TR":"en-US");
-  url.searchParams.set("api_key", TMDB_API_KEY);
-  Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));
-  // Try direct first, fallback to proxy
+  url.searchParams.set("api_key", TMDB_KEY);
+  if(params) Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,String(v)));
+
+  // Try direct
   try {
-    const r=await fetch(url.toString(),{headers:{"Authorization":"Bearer "+TMDB_TOKEN}});
-    if(!r.ok) throw new Error("status "+r.status);
-    return r.json();
-  } catch(e1) {
-    // CORS proxy fallback
-    const proxyUrl = "https://api.allorigins.win/get?url="+encodeURIComponent(url.toString());
-    const r2 = await fetch(proxyUrl);
-    if(!r2.ok) throw new Error("Proxy "+r2.status);
-    const wrapper = await r2.json();
-    return JSON.parse(wrapper.contents);
-  }
+    const r = await fetch(url.toString(), {headers:{"Authorization":"Bearer "+TMDB_TOKEN}});
+    if(r.ok) return r.json();
+  } catch(e){}
+
+  // Proxy fallback
+  try {
+    const r2 = await fetch("https://api.allorigins.win/get?url="+encodeURIComponent(url.toString()));
+    if(r2.ok){ const w=await r2.json(); return JSON.parse(w.contents); }
+  } catch(e){}
+
+  const r3 = await fetch("https://corsproxy.io/?"+encodeURIComponent(url.toString()));
+  if(!r3.ok) throw new Error("Bağlantı hatası: "+r3.status);
+  return r3.json();
 }
 
-async function doFind(excludeExtra=[]){
-  state.loading=true; state.error=null; state.result=null; state.view="main"; render();
-  const allExclude=[...state.shownIds,...excludeExtra,...state.watched];
+async function findMovie(){
+  state.loading=true; state.error=null; state.result=null; render();
+  const s=state;
+  const tmdbType = s.type==="series"?"tv":"movie";
+  const isDoc    = s.type==="documentary";
+
+  // Genre IDs: specific genre OR mood-based
+  let genreIds = [];
+  if(isDoc){
+    genreIds=[99];
+  } else if(s.genre && s.genre!=="any"){
+    genreIds=[GENRE_IDS[s.genre]||35];
+  } else if(s.mood){
+    genreIds=MOOD_GENRES[s.mood]?.[tmdbType]||[];
+  }
+
+  // Rating filter
+  const minVote = s.minRating||6.0;
+  const minCount = minVote>=8.0 ? 1000 : 300;
+
+  // Era → year range
+  let dateGte="", dateLte="";
+  if(s.era==="classic"){ dateGte="1950-01-01"; dateLte="1999-12-31"; }
+  else if(s.era==="2000s"){ dateGte="2000-01-01"; dateLte="2014-12-31"; }
+  else if(s.era==="recent"){ dateGte="2015-01-01"; dateLte="2022-12-31"; }
+  else if(s.era==="new"){    dateGte="2023-01-01"; }
+
+  // Runtime
+  const runtimes={"1saat":[0,95],"2saat":[60,155],"3saat":[100,999],"siniryok":[0,999]};
+  const [minRT,maxRT]=runtimes[s.time]||[0,999];
+
+  const params = {
+    sort_by: minVote>=8.0 ? "vote_average.desc" : "popularity.desc",
+    "vote_count.gte": minCount,
+    "vote_average.gte": minVote,
+    page: Math.floor(Math.random()*6)+1,
+  };
+
+  if(genreIds.length>0) params.with_genres=genreIds.join("|");
+  if(s.country && s.country!=="any") params.with_origin_country=COUNTRY_CODES[s.country]||s.country;
+  if(dateGte) params[tmdbType==="movie"?"primary_release_date.gte":"first_air_date.gte"]=dateGte;
+  if(dateLte) params[tmdbType==="movie"?"primary_release_date.lte":"first_air_date.lte"]=dateLte;
+  if(tmdbType==="movie"){
+    if(minRT>0) params["with_runtime.gte"]=minRT;
+    if(maxRT<999) params["with_runtime.lte"]=maxRT;
+  }
+  if(s.platforms.length>0){
+    const ids=s.platforms.map(p=>PLATFORM_IDS[p]).filter(Boolean);
+    if(ids.length>0){ params.with_watch_providers=ids.join("|"); params.watch_region="TR"; }
+  }
+
+  const allExclude=[...s.shownIds,...s.watched];
+
   try {
-    const tmdbType = state.type==="series"?"tv":"movie";
-    const isDoc    = state.type==="documentary";
-    const genreIds = isDoc ? [99] : (MOOD_GENRES[state.mood]?.[tmdbType]||[]);
-    const runtimes = {"1saat":[0,95],"2saat":[60,155],"3saat":[100,999],"siniryok":[0,999]};
-    const [minRT,maxRT] = runtimes[state.time]||[0,999];
-
-    const params = {
-      sort_by:"vote_average.desc",
-      "vote_count.gte":300,
-      "vote_average.gte":6.0,
-      page: Math.floor(Math.random()*8)+1,
-    };
-    if(genreIds.length>0) params.with_genres=genreIds.join("|");
-    if(state.platforms.length>0){
-      const ids=state.platforms.map(p=>PLATFORM_IDS[p]).filter(Boolean);
-      if(ids.length>0){ params.with_watch_providers=ids.join("|"); params.watch_region="TR"; }
-    }
-    if(tmdbType==="movie"){
-      if(minRT>0) params["with_runtime.gte"]=minRT;
-      if(maxRT<999) params["with_runtime.lte"]=maxRT;
-    }
-
     let data = await tmdbFetch("/discover/"+tmdbType, params);
-    let results = (data.results||[]).filter(r=>!allExclude.includes(r.id));
+    let results=(data.results||[]).filter(r=>!allExclude.includes(r.id));
+
     if(results.length===0){
-      data = await tmdbFetch("/"+tmdbType+"/popular");
-      results = (data.results||[]).filter(r=>!allExclude.includes(r.id));
+      // Relax filters: drop country/era, keep genre
+      const p2={...params,page:1};
+      delete p2.with_origin_country;
+      delete p2["primary_release_date.gte"]; delete p2["primary_release_date.lte"];
+      delete p2["first_air_date.gte"]; delete p2["first_air_date.lte"];
+      data=await tmdbFetch("/discover/"+tmdbType,p2);
+      results=(data.results||[]).filter(r=>!allExclude.includes(r.id));
     }
-    if(results.length===0) throw new Error(state.lang==="TR"?"Uygun içerik bulunamadı.":"No content found.");
+    if(results.length===0){
+      data=await tmdbFetch("/"+tmdbType+"/popular");
+      results=(data.results||[]).filter(r=>!allExclude.includes(r.id));
+    }
+    if(results.length===0) throw new Error(s.lang==="TR"?"Uygun içerik bulunamadı. Filtreleri değiştirip tekrar dene.":"No content found. Try changing your filters.");
 
-    const pick = results[Math.floor(Math.random()*Math.min(results.length,10))];
-    const details = await tmdbFetch("/"+tmdbType+"/"+pick.id, {append_to_response:"credits,watch/providers,external_ids"});
+    const pick=results[Math.floor(Math.random()*Math.min(results.length,12))];
+    const details=await tmdbFetch("/"+tmdbType+"/"+pick.id,{append_to_response:"credits,watch/providers,external_ids"});
 
-    const title    = details.title||details.name||"";
-    const origTitle= details.original_title||details.original_name||"";
-    const year     = (details.release_date||details.first_air_date||"").slice(0,4);
-    const overview = details.overview||"";
-    const rating   = details.vote_average?details.vote_average.toFixed(1):"—";
-    const poster   = details.poster_path?IMG+details.poster_path:null;
-    const backdrop = details.backdrop_path?IMG_BG+details.backdrop_path:null;
-    const duration = details.runtime?(details.runtime+" dk"):(details.number_of_seasons?(details.number_of_seasons+(state.lang==="TR"?" sezon":" seasons")):"");
-    const credits  = details.credits||{};
-    const cast     = (credits.cast||[]).slice(0,3).map(a=>a.name).join(", ");
-    const director = (credits.crew||[]).find(c=>c.job==="Director")?.name||(details.created_by||[]).map(c=>c.name).join(", ")||"";
-    const genres   = (details.genres||[]).map(g=>g.name).join(" / ");
-    const country  = (details.production_countries||[]).map(c=>c.name).join(", ")||(details.origin_country||[]).join(", ");
-    const wpTR     = details["watch/providers"]?.results?.TR;
-    const flatrate = wpTR?.flatrate||[];
-    const platform = flatrate.length>0?flatrate.slice(0,2).map(p=>p.provider_name).join(" / "):(state.platforms.length>0?state.platforms[0]:"—");
-    const imdbId   = details.external_ids?.imdb_id||"";
+    const title   =details.title||details.name||"";
+    const origTitle=details.original_title||details.original_name||"";
+    const year    =(details.release_date||details.first_air_date||"").slice(0,4);
+    const overview=details.overview||"";
+    const rating  =details.vote_average?details.vote_average.toFixed(1):"—";
+    const poster  =details.poster_path?IMG+details.poster_path:null;
+    const backdrop=details.backdrop_path?IMG_BG+details.backdrop_path:null;
+    const duration=details.runtime?details.runtime+(s.lang==="TR"?" dk":" min")
+                  :details.number_of_seasons?details.number_of_seasons+(s.lang==="TR"?" sezon":" seasons"):"";
+    const credits =details.credits||{};
+    const cast    =(credits.cast||[]).slice(0,3).map(a=>a.name).join(", ");
+    const director=(credits.crew||[]).find(c=>c.job==="Director")?.name
+                  ||(details.created_by||[]).map(c=>c.name).join(", ")||"";
+    const genres  =(details.genres||[]).map(g=>g.name).join(" / ");
+    const country =(details.production_countries||[]).map(c=>c.name).join(", ")
+                  ||(details.origin_country||[]).join(", ");
+    const wpTR    =details["watch/providers"]?.results?.TR;
+    const platform=(wpTR?.flatrate||[]).slice(0,2).map(p=>p.provider_name).join(" / ")
+                  ||(s.platforms.length>0?s.platforms[0]:"—");
+    const imdbId  =details.external_ids?.imdb_id||"";
 
     state.shownIds.push(pick.id);
-    state.result = {id:pick.id,title,origTitle,year,overview,rating,poster,backdrop,duration,cast,director,genres,country,platform,imdbId};
-    state.step = 5;
-  } catch(e) {
-    state.error = e.message;
-    state.step  = 5;
+    state.result={id:pick.id,title,origTitle,year,overview,rating,poster,backdrop,duration,cast,director,genres,country,platform,imdbId};
+    state.step=TOTAL;
+  } catch(e){
+    state.error=e.message;
+    state.step=TOTAL;
   }
-  state.loading = false;
+  state.loading=false;
   render();
 }
 
-const T = {
-  TR:{q1a:"Bu akşam ne",q1b:"izleyelim",q1c:"?",q1s:"Film, dizi veya belgesel — birini seç.",
-      q2a:"Şu an nasıl",q2b:"hissediyorsun",q2c:"?",q2s:"Ruh halin her şeyi belirliyor.",
-      q3a:"Kiminle",q3b:"izliyorsun",q3c:"?",q3s:"Ve ne kadar vaktiniz var?",
-      q3t:"Ne kadar vakit var?",
-      q4a:"Hangi platformlarda",q4b:"aboneliğin var",q4c:"?",q4s:"Hepsini seçebilirsin.",
-      q5a:"Hazır mısın",q5b:"önerimi almaya",q5c:"?",q5s:"Ruh halin, vakit ve zevkin eşleştiriliyor.",
-      cont:"Devam →",find:"✦ Bu akşamki önerimi bul",
-      loadT:"Mükemmel önerin aranıyor…",loadS:"Ruh halin, vakit ve zevkin eşleştiriliyor.",
-      back:"← Geri",change:"← Kriterleri değiştir",
-      retry:"Tekrar Dene",another:"🔄 Başka öneri",
-      watched2:"✅ İzledim, başka öneri",startover:"← Başa dön",
-      fav:"🤍 Favorile",favd:"❤️ Favoride",
-      wtch:"⬜ İzledim",wtchd:"✅ İzlendi",
-      dir:"🎬 Yönetmen:",cast:"⭐ Oyuncular:",why:"NEDEN BU SEÇİLDİ",
-      lib:"Kitaplığım 📚",favs:"❤️ Favoriler",watched:"✅ İzlenenler",remove:"Kaldır",
-      err:"Hata",nope:"Henüz bir şey yok.",
-  },
-  EN:{q1a:"Tonight let's",q1b:"watch",q1c:"",q1s:"Movie, series or documentary — pick one.",
-      q2a:"How are you",q2b:"feeling",q2c:"?",q2s:"Your mood shapes everything.",
-      q3a:"Who are you",q3b:"watching with",q3c:"?",q3s:"And how much time do you have?",
-      q3t:"How much time?",
-      q4a:"Which platforms",q4b:"have you got",q4c:"?",q4s:"Select all that apply.",
-      q5a:"Ready to find",q5b:"your pick",q5c:"?",q5s:"Matching your mood, time and taste.",
-      cont:"Continue →",find:"✦ Find my pick for tonight",
-      loadT:"Finding your perfect pick…",loadS:"Matching your mood, time and taste.",
-      back:"← Back",change:"← Change criteria",
-      retry:"Try Again",another:"🔄 Another pick",
-      watched2:"✅ Watched it, next pick",startover:"← Start over",
-      fav:"🤍 Favorite",favd:"❤️ Favorited",
-      wtch:"⬜ Mark watched",wtchd:"✅ Watched",
-      dir:"🎬 Director:",cast:"⭐ Cast:",why:"WHY THIS PICK",
-      lib:"My Library 📚",favs:"❤️ Favorites",watched:"✅ Watched",remove:"Remove",
-      err:"Error",nope:"Nothing here yet.",
-  },
-};
+// ── Data ────────────────────────────────────────────────────────────────────
+const TOTAL=7; // steps 0-6 + result
 
 const TYPES=[
-  {id:"movie",  emoji:"🎬",TR:"Film",    EN:"Movie",      dTR:"Tek seferlik, bu akşam biter",dEN:"One story, done tonight"},
-  {id:"series", emoji:"📺",TR:"Dizi",     EN:"Series",     dTR:"Yeni bir şey başlat",         dEN:"Start something new"},
-  {id:"documentary",emoji:"🌍",TR:"Belgesel",EN:"Documentary",dTR:"Gerçek hikayeler",           dEN:"Real stories"},
+  {id:"movie",      emoji:"🎬",TR:"Film",    EN:"Movie",      dTR:"Tek seferlik, bu akşam biter",dEN:"One story, done tonight"},
+  {id:"series",     emoji:"📺",TR:"Dizi",     EN:"Series",     dTR:"Yeni bir şey başlat",         dEN:"Start something new"},
+  {id:"documentary",emoji:"🌍",TR:"Belgesel", EN:"Documentary",dTR:"Gerçek hikayeler",             dEN:"Real stories"},
 ];
 const MOODS=[
-  {id:"rahat",   emoji:"😌",TR:"Rahat",    EN:"Chill",       dTR:"Kolay, düşünmeden izle",dEN:"Easy and relaxing"},
-  {id:"gulddur", emoji:"😂",TR:"Güldür",   EN:"Make me laugh",dTR:"Komedi, eğlence",      dEN:"Comedy and fun"},
-  {id:"heyecan", emoji:"😮",TR:"Heyecan",  EN:"Thrill me",   dTR:"Nefes kesen, heyecanlı",dEN:"Edge-of-your-seat"},
-  {id:"duygu",   emoji:"🥺",TR:"Duygu",    EN:"Emotional",   dTR:"Duygusal, anlamlı",     dEN:"Moving and meaningful"},
-  {id:"dusundur",emoji:"🧠",TR:"Düşündür", EN:"Mind-bending",dTR:"Zihin açıcı, derin",    dEN:"Deep and thought-provoking"},
-  {id:"aksiyon", emoji:"💥",TR:"Aksiyon",  EN:"Action",      dTR:"Hızlı, enerjik",        dEN:"Fast-paced"},
+  {id:"rahat",   emoji:"😌",TR:"Rahat",    EN:"Chill",        dTR:"Kolay, düşünmeden izle", dEN:"Easy & relaxing"},
+  {id:"gulddur", emoji:"😂",TR:"Güldür",   EN:"Make me laugh",dTR:"Komedi, eğlence",        dEN:"Comedy & fun"},
+  {id:"heyecan", emoji:"😮",TR:"Heyecan",  EN:"Thrill me",    dTR:"Nefes kesen, gerilimli", dEN:"Edge-of-your-seat"},
+  {id:"duygu",   emoji:"🥺",TR:"Duygu",    EN:"Emotional",    dTR:"Duygusal, anlamlı",      dEN:"Moving & meaningful"},
+  {id:"dusundur",emoji:"🧠",TR:"Düşündür", EN:"Mind-bending", dTR:"Zihin açıcı, derin",     dEN:"Deep & thought-provoking"},
+  {id:"aksiyon", emoji:"💥",TR:"Aksiyon",  EN:"Action",       dTR:"Hızlı, enerjik",         dEN:"Fast-paced"},
+];
+const GENRES_MOVIE=[
+  {id:"action",emoji:"💥",TR:"Aksiyon",EN:"Action"},{id:"animation",emoji:"✨",TR:"Animasyon",EN:"Animation"},
+  {id:"comedy",emoji:"😄",TR:"Komedi",EN:"Comedy"},{id:"crime",emoji:"🔍",TR:"Suç",EN:"Crime"},
+  {id:"drama",emoji:"🎭",TR:"Drama",EN:"Drama"},{id:"fantasy",emoji:"🧙",TR:"Fantazi",EN:"Fantasy"},
+  {id:"horror",emoji:"👁️",TR:"Korku",EN:"Horror"},{id:"mystery",emoji:"🕵️",TR:"Gizem",EN:"Mystery"},
+  {id:"romance",emoji:"🌹",TR:"Romantik",EN:"Romance"},{id:"scifi",emoji:"🚀",TR:"Bilim Kurgu",EN:"Sci-Fi"},
+  {id:"thriller",emoji:"⚡",TR:"Gerilim",EN:"Thriller"},{id:"war",emoji:"⚔️",TR:"Savaş",EN:"War"},
+  {id:"history",emoji:"📜",TR:"Tarih",EN:"History"},{id:"western",emoji:"🤠",TR:"Western",EN:"Western"},
+  {id:"any",emoji:"🎲",TR:"Sürpriz et",EN:"Surprise me"},
+];
+const GENRES_SERIES=[
+  {id:"action",emoji:"💥",TR:"Aksiyon",EN:"Action"},{id:"animation",emoji:"✨",TR:"Animasyon",EN:"Animation"},
+  {id:"comedy",emoji:"😄",TR:"Komedi",EN:"Comedy"},{id:"crime",emoji:"🔍",TR:"Suç/Gizem",EN:"Crime"},
+  {id:"drama",emoji:"🎭",TR:"Drama",EN:"Drama"},{id:"fantasy",emoji:"🧙",TR:"Fantazi",EN:"Fantasy"},
+  {id:"scifi",emoji:"🚀",TR:"Bilim Kurgu",EN:"Sci-Fi"},{id:"thriller",emoji:"⚡",TR:"Gerilim",EN:"Thriller"},
+  {id:"mystery",emoji:"🕵️",TR:"Gizem",EN:"Mystery"},{id:"romance",emoji:"🌹",TR:"Romantik",EN:"Romance"},
+  {id:"any",emoji:"🎲",TR:"Sürpriz et",EN:"Surprise me"},
+];
+const GENRES_DOC=[
+  {id:"documentary",emoji:"🌿",TR:"Doğa & Bilim",EN:"Nature & Science"},
+  {id:"crime",emoji:"🔍",TR:"Gerçek Suç",EN:"True Crime"},
+  {id:"history",emoji:"📜",TR:"Tarih",EN:"History"},
+  {id:"music",emoji:"🎵",TR:"Müzik & Sanat",EN:"Music & Art"},
+  {id:"any",emoji:"🎲",TR:"Sürpriz et",EN:"Surprise me"},
 ];
 const WHO=[
-  {id:"yalniz",    emoji:"🧍",TR:"Yalnız",    EN:"Solo"},
-  {id:"sevgilim",  emoji:"💑",TR:"Sevgilim",  EN:"Partner"},
+  {id:"yalniz",   emoji:"🧍",TR:"Yalnız",    EN:"Solo"},
+  {id:"sevgilim", emoji:"💑",TR:"Sevgilim",  EN:"Partner"},
   {id:"arkadaslar",emoji:"👥",TR:"Arkadaşlar",EN:"Friends"},
 ];
 const TIME=[
@@ -323,89 +353,155 @@ const TIME=[
   {id:"3saat",   TR:"3+ saat",  EN:"3+ hours"},
   {id:"siniryok",TR:"Sınır yok",EN:"No limit"},
 ];
+const COUNTRIES=[
+  {id:"any",emoji:"🌍",TR:"Farketmez",EN:"Any country"},
+  {id:"TR", emoji:"🇹🇷",TR:"Türkiye",  EN:"Turkey"},
+  {id:"US", emoji:"🇺🇸",TR:"Amerika",  EN:"USA"},
+  {id:"KR", emoji:"🇰🇷",TR:"Kore",     EN:"Korea"},
+  {id:"GB", emoji:"🇬🇧",TR:"İngiltere",EN:"UK"},
+  {id:"FR", emoji:"🇫🇷",TR:"Fransa",   EN:"France"},
+  {id:"JP", emoji:"🇯🇵",TR:"Japonya",  EN:"Japan"},
+  {id:"IT", emoji:"🇮🇹",TR:"İtalya",   EN:"Italy"},
+  {id:"ES", emoji:"🇪🇸",TR:"İspanya",  EN:"Spain"},
+  {id:"DE", emoji:"🇩🇪",TR:"Almanya",  EN:"Germany"},
+  {id:"IN", emoji:"🇮🇳",TR:"Hindistan",EN:"India"},
+];
+const ERAS=[
+  {id:"any",   emoji:"🎲",TR:"Farketmez",dTR:"",           EN:"Any era",    dEN:""},
+  {id:"classic",emoji:"📽️",TR:"Klasikler",dTR:"1950 – 1999",EN:"Classics",  dEN:"1950 – 1999"},
+  {id:"2000s", emoji:"💿",TR:"2000'ler", dTR:"2000 – 2014", EN:"2000s",     dEN:"2000 – 2014"},
+  {id:"recent",emoji:"🎞️",TR:"Yakın dönem",dTR:"2015 – 2022",EN:"Recent",   dEN:"2015 – 2022"},
+  {id:"new",   emoji:"🆕",TR:"Yeni çıkan",dTR:"2023+",      EN:"Brand new", dEN:"2023+"},
+];
+const RATINGS=[
+  {id:6.0, TR:"6+ ⭐ Güzel",     EN:"6+ ⭐ Good"},
+  {id:7.0, TR:"7+ ⭐⭐ İyi",     EN:"7+ ⭐⭐ Great"},
+  {id:8.0, TR:"8+ ⭐⭐⭐ Harika",EN:"8+ ⭐⭐⭐ Excellent"},
+  {id:8.5, TR:"8.5+ 🏆 En iyiler",EN:"8.5+ 🏆 All-time greats"},
+];
 const PLATS=["Netflix","Disney+","Amazon Prime","BluTV","Apple TV+","Gain","YouTube"];
 
-function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-
-function darkCard(item, selected, onclick, compact){
+// ── Helpers ─────────────────────────────────────────────────────────────────
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function dc(item,sel,onclick,compact){
   const l=state.lang;
-  return `<div class="dark-card${selected?" selected":""}" onclick="${onclick}">
+  const lbl=item[l]||item.TR;
+  const sub=item["d"+l]||item.dTR||"";
+  return`<div class="dark-card${sel?" selected":""}" onclick="${onclick}">
     <span class="emoji">${item.emoji}</span>
-    <div class="label">${esc(item[l]||item.TR)}</div>
-    ${!compact&&(item["d"+l]||item.dTR)?`<div class="sublabel">${esc(item["d"+l]||item.dTR)}</div>`:""}
+    <div class="label">${esc(lbl)}</div>
+    ${!compact&&sub?`<div class="sublabel">${esc(sub)}</div>`:""}
   </div>`;
 }
-
-function stepBar(s){
+function stepBar(s,total){
   let h='<div class="step-bar">';
-  for(let i=0;i<5;i++) h+=`<div class="step-dot ${i<s?"done":i===s?"active":""}"></div>`;
+  for(let i=0;i<total;i++) h+=`<div class="step-dot ${i<s?"done":i===s?"active":""}"></div>`;
   return h+"</div>";
 }
 
-function render(){
-  const l=state.lang; const tx=T[l]; const s=state;
-  const libCount=s.favorites.length+s.watched.length;
-  const libBtn=document.getElementById("libBtn");
-  if(libBtn){ libBtn.style.display=libCount>0?"block":"none"; document.getElementById("libCount").textContent=libCount; }
+// ── Actions ──────────────────────────────────────────────────────────────────
+function setLang(l){
+  state.lang=l;
+  document.getElementById("btnTR").className="lang-btn"+(l==="TR"?" active":"");
+  document.getElementById("btnEN").className="lang-btn"+(l==="EN"?" active":"");
+  render();
+}
+function toggleView(v){ state.view=state.view===v?"main":v; render(); }
+function restart(){ Object.assign(state,{view:"main",step:0,type:null,mood:null,genre:null,who:null,time:null,country:null,era:null,minRating:6.0,platforms:[],result:null,loading:false,error:null,shownIds:[]}); render(); }
+function togglePlat(p){ const i=state.platforms.indexOf(p); if(i>=0)state.platforms.splice(i,1); else state.platforms.push(p); render(); }
+function toggleFav(id,title,year,rating,platform,poster){ const n=isFaved(id)?state.favorites.filter(f=>f.id!==id):[...state.favorites,{id,title,year,rating,platform,poster}]; saveFavs(n); render(); }
+function toggleWtch(id){ const n=isWatched(id)?state.watched.filter(x=>x!==id):[...state.watched,id]; saveWtch(n); render(); }
+function markNext(id){ toggleWtch(id); doFetch([id]); }
+function doFetch(ex){ state.shownIds=[...state.shownIds,...(ex||[])]; findMovie(); }
+function skipStep(){ state.step++; render(); }
 
+function goNext(){
+  if(state.step===TOTAL-1) findMovie();
+  else { state.step++; render(); }
+}
+function goBack(){
+  if(state.view!=="main"){state.view="main";render();return;}
+  if(state.step===TOTAL){state.step=TOTAL-1;state.result=null;state.error=null;render();return;}
+  if(state.step>0){state.step--;render();}
+}
+
+// ── Render ───────────────────────────────────────────────────────────────────
+const TX={
+  TR:{back:"← Geri",change:"← Kriterleri değiştir",cont:"Devam →",find:"✦ Bu akşamki önerimi bul",
+      loadT:"Mükemmel önerin aranıyor…",loadS:"Ruh halin, vakit ve zevkin eşleştiriliyor.",
+      another:"🔄 Başka öneri",watched2:"✅ İzledim, başka öneri",startover:"← Başa dön",
+      fav:"🤍 Favorile",favd:"❤️ Favoride",wtch:"⬜ İzledim",wtchd:"✅ İzlendi",
+      dir:"🎬 Yönetmen:",cast:"⭐ Oyuncular:",
+      lib:"Kitaplığım 📚",favs:"❤️ Favoriler",watched:"✅ İzlenenler",nope:"Henüz bir şey yok.",
+      skip:"Bu adımı geç →",optional:"(isteğe bağlı)",retry:"Tekrar Dene",err:"Hata",
+      minRating:"Minimum puan",country:"Yapım ülkesi",era:"Dönem",
+  },
+  EN:{back:"← Back",change:"← Change criteria",cont:"Continue →",find:"✦ Find my pick for tonight",
+      loadT:"Finding your perfect pick…",loadS:"Matching your mood, time and taste.",
+      another:"🔄 Another pick",watched2:"✅ Watched it, next pick",startover:"← Start over",
+      fav:"🤍 Favorite",favd:"❤️ Favorited",wtch:"⬜ Mark watched",wtchd:"✅ Watched",
+      dir:"🎬 Director:",cast:"⭐ Cast:",
+      lib:"My Library 📚",favs:"❤️ Favorites",watched:"✅ Watched",nope:"Nothing here yet.",
+      skip:"Skip this step →",optional:"(optional)",retry:"Try Again",err:"Error",
+      minRating:"Minimum rating",country:"Country of origin",era:"Era",
+  },
+};
+
+function render(){
+  const s=state; const l=s.lang; const tx=TX[l];
+  const lc=s.favorites.length+s.watched.length;
+  const lb=document.getElementById("libBtn");
+  if(lb){ lb.style.display=lc>0?"block":"none"; document.getElementById("libCount").textContent=lc; }
   const main=document.getElementById("main");
 
   // LIBRARY
   if(s.view==="library"){
     let h=`<div class="screen"><button class="back-btn" onclick="toggleView('library')">${tx.back}</button>
-    <h2 style="font-size:26px;font-weight:400;font-style:italic;margin-bottom:24px">${tx.lib}</h2>`;
-    if(s.favorites.length>0){
-      h+=`<div class="section-label" style="color:#C4A35A">${tx.favs}</div>`;
+    <h2 style="font-size:24px;font-weight:400;font-style:italic;margin-bottom:20px;color:#1a1a1a">${tx.lib}</h2>`;
+    if(s.favorites.length){
+      h+=`<div class="section-title" style="color:#C4A35A">${tx.favs}</div>`;
       s.favorites.forEach(f=>{
-        h+=`<div class="lib-item">
-          ${f.poster?`<img class="lib-poster" src="${esc(f.poster)}" alt="">`:""}
-          <div class="lib-info"><div class="lib-title">${esc(f.title)}</div>
-          <div class="lib-meta">${esc(f.year)}${f.rating?` · ★${f.rating}`:""}${f.platform?` · ${esc(f.platform)}`:""}</div></div>
-          <button class="lib-remove" onclick="toggleFav(${f.id},'','','','','')">❤️</button>
-        </div>`;
+        h+=`<div class="lib-item">${f.poster?`<img class="lib-poster" src="${esc(f.poster)}" alt="">`:""}
+        <div class="lib-info"><div class="lib-title">${esc(f.title)}</div>
+        <div class="lib-meta">${esc(f.year)}${f.rating?` · ★${f.rating}`:""}${f.platform?` · ${esc(f.platform)}`:""}</div></div>
+        <button style="background:none;border:none;cursor:pointer;font-size:17px;padding:0 13px" onclick="toggleFav(${f.id},'','','','','')">❤️</button></div>`;
       });
     }
-    if(s.watched.length>0){
-      h+=`<div class="section-label" style="color:#8a8a7a;margin-top:${s.favorites.length?24:0}px">${tx.watched} (${s.watched.length})</div>`;
-      s.watched.forEach(id=>{
-        h+=`<div class="lib-item" style="opacity:0.6;padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:13px;color:#999;font-family:'Helvetica Neue',sans-serif">#${id}</span>
-          <button style="background:none;border:none;cursor:pointer;font-size:12px;color:#666;font-family:'Helvetica Neue',sans-serif" onclick="toggleWtch(${id})">${tx.remove}</button>
-        </div>`;
-      });
+    if(s.watched.length){
+      h+=`<div class="section-title" style="color:#8a8a7a;margin-top:${s.favorites.length?20:0}px">${tx.watched} (${s.watched.length})</div>
+      <p style="font-size:13px;color:#666;font-family:'Helvetica Neue',sans-serif">${s.watched.length} ${l==="TR"?"içerik işaretlendi":"items marked"}</p>`;
     }
     if(!s.favorites.length&&!s.watched.length) h+=`<p style="color:#8a8a7a;font-size:14px;font-family:'Helvetica Neue',sans-serif">${tx.nope}</p>`;
-    h+="</div>";
-    main.innerHTML=h; return;
+    main.innerHTML=h+"</div>"; return;
   }
 
   // LOADING
   if(s.loading){
-    main.innerHTML=`<div class="loading screen">
-      <div class="loading-emoji">🎬</div>
-      <div><h2>${tx.loadT}</h2><p>${tx.loadS}</p></div>
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-    </div>`; return;
+    main.innerHTML=`<div class="loading screen"><div style="font-size:54px">🎬</div>
+    <div style="text-align:center"><p style="font-size:19px;font-style:italic;margin-bottom:6px">${tx.loadT}</p>
+    <p style="font-size:14px;color:#8a8a7a;font-family:'Helvetica Neue',sans-serif">${tx.loadS}</p></div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`; return;
   }
 
   // RESULT
-  if(!s.loading&&s.step===5){
-    let h=`<div class="screen"><button class="back-btn" onclick="goBackResult()">${tx.change}</button>`;
+  if(!s.loading&&s.step===TOTAL){
+    const r=s.result;
+    let h=`<div class="screen"><button class="back-btn" onclick="goBack()">${tx.change}</button>`;
     if(s.error){
-      h+=`<div class="error-box"><div class="error-title">⚠️ ${tx.err}</div><div class="error-msg">${esc(s.error)}</div>
-      <button class="find-btn" onclick="doFind([])">${tx.retry}</button></div>`;
-    } else if(s.result){
-      const r=s.result;
+      h+=`<div class="error-box"><p style="color:#e05555;font-size:14px;font-weight:600;font-family:'Helvetica Neue',sans-serif;margin-bottom:6px">⚠️ ${tx.err}</p>
+      <p style="color:#e05555;font-size:12px;font-family:'Helvetica Neue',sans-serif;margin-bottom:14px;line-height:1.5">${esc(s.error)}</p>
+      <button class="find-btn" onclick="findMovie()">${tx.retry}</button></div>`;
+    } else if(r){
       const faved=isFaved(r.id); const wtchd=isWatched(r.id);
-      const favArgs=`${r.id},'${esc(r.title)}','${esc(r.year)}','${esc(r.rating)}','${esc(r.platform)}','${esc(r.poster||"")}'`;
+      const fa=`${r.id},'${esc(r.title.replace(/'/g,"\\'"))}','${esc(r.year)}','${esc(r.rating)}','${esc(r.platform)}','${esc(r.poster||"")}'`;
       h+=`<div class="result-card">
-        <div class="result-visual${!r.backdrop&&!r.poster?" no-poster-bg":""}">
+        <div class="result-visual">
           ${r.backdrop?`<img class="result-backdrop" src="${esc(r.backdrop)}" alt="">`:""}
-          ${r.poster?`<img class="result-poster" src="${esc(r.poster)}" alt="${esc(r.title)}">`:""}
-          <div class="result-title-area${!r.poster?" no-poster":""}">
-            <div class="result-badges">
-              ${r.genres?`<span class="badge badge-genre">${esc(r.genres.split(" / ")[0])}</span>`:""}
-              ${r.year?`<span class="badge badge-year">${esc(r.year)}</span>`:""}
+          ${r.poster?`<img class="result-poster" src="${esc(r.poster)}" alt="">`:""}
+          <div class="result-info${!r.poster?" full":""}">
+            <div class="rbadges">
+              ${r.genres?`<span class="rbadge rbadge-g">${esc(r.genres.split(" / ")[0])}</span>`:""}
+              ${r.year?`<span class="rbadge rbadge-y">${esc(r.year)}</span>`:""}
             </div>
             <div class="result-title">${esc(r.title)}</div>
             ${r.origTitle&&r.origTitle!==r.title?`<div class="result-orig">${esc(r.origTitle)}</div>`:""}
@@ -413,70 +509,100 @@ function render(){
         </div>
         <div class="result-body">
           <div class="meta-row">
-            ${r.rating&&r.rating!=="0.0"?`<a href="${r.imdbId?"https://www.imdb.com/title/"+r.imdbId:"#"}" target="_blank" class="meta-badge meta-rating">★ ${esc(r.rating)} TMDB</a>`:""}
-            ${r.duration?`<span class="meta-badge meta-info">⏱ ${esc(r.duration)}</span>`:""}
-            ${r.platform&&r.platform!=="—"?`<span class="meta-badge meta-info">${esc(r.platform)}</span>`:""}
-            ${r.country?`<span class="meta-badge meta-country">${esc(r.country.split(",")[0])}</span>`:""}
+            ${r.rating&&r.rating!=="0.0"?`<span class="meta meta-r">★ ${esc(r.rating)} TMDB</span>`:""}
+            ${r.duration?`<span class="meta meta-i">⏱ ${esc(r.duration)}</span>`:""}
+            ${r.platform&&r.platform!=="—"?`<span class="meta meta-i">${esc(r.platform)}</span>`:""}
+            ${r.country?`<span class="meta meta-c">${esc(r.country.split(",")[0])}</span>`:""}
           </div>
           ${r.director||r.cast?`<div class="crew-box">
-            ${r.director?`<div class="crew-line"><span class="crew-label">${tx.dir}</span> ${esc(r.director)}</div>`:""}
-            ${r.cast?`<div class="crew-line"><span class="crew-label">${tx.cast}</span> ${esc(r.cast)}</div>`:""}
+            ${r.director?`<div class="crew-line"><span class="crew-lbl">${tx.dir}</span> ${esc(r.director)}</div>`:""}
+            ${r.cast?`<div class="crew-line"><span class="crew-lbl">${tx.cast}</span> ${esc(r.cast)}</div>`:""}
           </div>`:""}
           ${r.overview?`<p class="overview">${esc(r.overview)}</p>`:""}
           <div class="action-row">
-            <button class="action-btn${faved?" faved":""}" onclick="toggleFav(${favArgs})">${faved?tx.favd:tx.fav}</button>
+            <button class="action-btn${faved?" faved":""}" onclick="toggleFav(${fa})">${faved?tx.favd:tx.fav}</button>
             <button class="action-btn${wtchd?" watched":""}" onclick="toggleWtch(${r.id})">${wtchd?tx.wtchd:tx.wtch}</button>
           </div>
         </div>
       </div>
       <div class="btn-stack">
-        <button class="find-btn" onclick="doFind([${r.id}])">${tx.another}</button>
-        <button class="alt-btn" onclick="markAndNext(${r.id})">${tx.watched2}</button>
+        <button class="find-btn" onclick="doFetch([${r.id}])">${tx.another}</button>
+        <button class="alt-btn" onclick="markNext(${r.id})">${tx.watched2}</button>
         <button class="outline-btn" onclick="restart()">${tx.startover}</button>
       </div>`;
     }
-    h+="</div>"; main.innerHTML=h; return;
+    main.innerHTML=h+"</div>"; return;
   }
 
   // STEPS
-  const canCont=(s.step===0&&s.type)||(s.step===1&&s.mood)||(s.step===2&&s.who)||(s.step===3&&s.who&&s.time)||(s.step===4);
-  let h=`<div class="screen">${stepBar(s.step)}`;
-  if(s.step>0) h+=`<button class="back-btn" onclick="goBack()">${tx.back}</button>`;
+  const step=s.step;
+  const genres = s.type==="series"?GENRES_SERIES:s.type==="documentary"?GENRES_DOC:GENRES_MOVIE;
+  const canCont=[
+    s.type, s.mood, s.genre, s.who&&s.time, s.country, s.era, s.minRating
+  ][step]!==undefined && [
+    s.type, s.mood, s.genre, s.who&&s.time, s.country, s.era, s.minRating
+  ][step]!==null && [
+    s.type, s.mood, s.genre, s.who&&s.time, s.country, s.era, s.minRating
+  ][step]!==false;
 
-  if(s.step===0){
-    h+=`<h1 class="q">${tx.q1a} <em>${tx.q1b}</em>${tx.q1c}</h1><p class="sub">${tx.q1s}</p>
-    <div class="grid3">${TYPES.map(o=>darkCard(o,s.type===o.id,`selectType('${o.id}')`,false)).join("")}</div>`;
-  } else if(s.step===1){
-    h+=`<h1 class="q">${tx.q2a} <em>${tx.q2b}</em>${tx.q2c}</h1><p class="sub">${tx.q2s}</p>
-    <div class="grid2">${MOODS.map(o=>darkCard(o,s.mood===o.id,`selectMood('${o.id}')`,false)).join("")}</div>`;
-  } else if(s.step===2){
-    h+=`<h1 class="q">${tx.q3a} <em>${tx.q3b}</em>${tx.q3c}</h1><p class="sub">${tx.q3s}</p>
-    <div class="grid3">${WHO.map(o=>darkCard(o,s.who===o.id,`selectWho('${o.id}')`,true)).join("")}</div>
-    <p style="font-size:12px;color:#8a8a7a;margin-bottom:12px;font-family:'Helvetica Neue',sans-serif;letter-spacing:0.06em;text-transform:uppercase">${tx.q3t}</p>
-    <div class="pills">${TIME.map(o=>`<button class="pill${s.time===o.id?" selected":""}" onclick="selectTime('${o.id}')">${esc(o[l])}</button>`).join("")}</div>`;
-  } else if(s.step===3){
-    h+=`<h1 class="q">${tx.q4a} <em>${tx.q4b}</em>${tx.q4c}</h1><p class="sub">${tx.q4s}</p>
-    <div class="pills">${PLATS.map(p=>`<button class="plat-pill${s.platforms.includes(p)?" selected":""}" onclick="togglePlatform('${p}')">${esc(p)}</button>`).join("")}</div>`;
-  } else if(s.step===4){
-    h+=`<h1 class="q">${tx.q5a} <em>${tx.q5b}</em>${tx.q5c}</h1><p class="sub">${tx.q5s}</p>
-    <div style="display:flex;justify-content:center;font-size:64px;margin-bottom:32px">🎬</div>`;
+  let h=`<div class="screen">${stepBar(step,TOTAL)}`;
+  if(step>0) h+=`<button class="back-btn" onclick="goBack()">${tx.back}</button>`;
+
+  // Step 0: İçerik türü
+  if(step===0){
+    h+=`<h1 class="q">${l==="TR"?"Bu akşam ne ":"Tonight let's "}<em>${l==="TR"?"izleyelim":"watch"}</em>${l==="TR"?"?":"?"}</h1>
+    <p class="sub">${l==="TR"?"Film, dizi veya belgesel — birini seç.":"Movie, series or documentary — pick one."}</p>
+    <div class="grid3">${TYPES.map(o=>dc(o,s.type===o.id,`state.type='${o.id}';render()`,false)).join("")}</div>`;
+  }
+  // Step 1: Ruh hali
+  else if(step===1){
+    h+=`<h1 class="q">${l==="TR"?"Şu an nasıl ":"How are you "}<em>${l==="TR"?"hissediyorsun":"feeling"}</em>${l==="TR"?"?":"?"}</h1>
+    <p class="sub">${l==="TR"?"Ruh halin her şeyi belirliyor.":"Your mood shapes everything."}</p>
+    <div class="grid2">${MOODS.map(o=>dc(o,s.mood===o.id,`state.mood='${o.id}';render()`,false)).join("")}</div>`;
+  }
+  // Step 2: Tür
+  else if(step===2){
+    h+=`<h1 class="q">${l==="TR"?"Hangi ":"Which "}<em>${l==="TR"?"türü":"genre"}</em>${l==="TR"?" istiyorsun?":" tonight?"}</h1>
+    <p class="sub">${l==="TR"?"Bir tür seç veya sürpriz et.":"Pick a genre or let us surprise you."}</p>
+    <div class="grid3">${genres.map(o=>dc(o,s.genre===o.id,`state.genre='${o.id}';render()`,true)).join("")}</div>`;
+  }
+  // Step 3: Kiminle + Vakit
+  else if(step===3){
+    h+=`<h1 class="q">${l==="TR"?"Kiminle ":"Who are you "}<em>${l==="TR"?"izliyorsun":"watching with"}</em>${l==="TR"?"?":"?"}</h1>
+    <p class="sub">${l==="TR"?"Ve ne kadar vaktiniz var?":"And how much time?"}</p>
+    <div class="grid3">${WHO.map(o=>dc(o,s.who===o.id,`state.who='${o.id}';render()`,true)).join("")}</div>
+    <div class="section-title">${l==="TR"?"Ne kadar vakit var?":"How much time?"}</div>
+    <div class="pills">${TIME.map(o=>`<button class="pill${s.time===o.id?" selected":""}" onclick="state.time='${o.id}';render()">${esc(o[l])}</button>`).join("")}</div>`;
+  }
+  // Step 4: Ülke
+  else if(step===4){
+    h+=`<h1 class="q">${l==="TR"?"Hangi ülkenin ":"Which country's "}<em>${l==="TR"?"yapımını":"films"}</em>${l==="TR"?" izlemek istiyorsun?":" do you prefer?"}</h1>
+    <p class="sub">${l==="TR"?"İsteğe bağlı — farketmez diyebilirsin.":"Optional — you can always pick 'any'."}</p>
+    <div class="grid3">${COUNTRIES.map(o=>dc(o,s.country===o.id,`state.country='${o.id}';render()`,true)).join("")}</div>`;
+  }
+  // Step 5: Dönem
+  else if(step===5){
+    h+=`<h1 class="q">${l==="TR"?"Hangi ":"Which "}<em>${l==="TR"?"dönemden":"era"}</em>${l==="TR"?"?":"?"}</h1>
+    <p class="sub">${l==="TR"?"Klasikler mi, yeni çıkanlar mı?":"Classics or brand new releases?"}</p>
+    <div class="grid2">${ERAS.map(o=>dc(o,s.era===o.id,`state.era='${o.id}';render()`,false)).join("")}</div>`;
+  }
+  // Step 6: Platform + Puan
+  else if(step===6){
+    h+=`<h1 class="q">${l==="TR"?"Son olarak ":"Almost there — "}<em>${l==="TR"?"platformun":"your platform"}</em>${l==="TR"?"?":"?"}</h1>
+    <p class="sub">${l==="TR"?"Hepsini seçebilirsin. Puan filtresini de ayarlayabilirsin.":"Select all you have. Optionally set a minimum rating."}</p>
+    <div class="section-title">${l==="TR"?"Platform":"Platform"}</div>
+    <div class="pills" style="margin-bottom:20px">${PLATS.map(p=>`<button class="pill${s.platforms.includes(p)?" selected":""}" onclick="togglePlat('${p}')">${esc(p)}</button>`).join("")}</div>
+    <div class="section-title">${tx.minRating}</div>
+    <div class="pills">${RATINGS.map(r=>`<button class="pill${s.minRating===r.id?" selected":""}" onclick="state.minRating=${r.id};render()">${esc(r[l])}</button>`).join("")}</div>`;
   }
 
-  if(s.step<4){
-    h+=`<button class="cont-btn${canCont?" active":""}" onclick="${canCont?"goNext()":""}">${tx.cont}</button>`;
-  } else {
-    h+=`<button class="find-btn" onclick="doFind([])">${tx.find}</button>`;
-  }
-  h+="</div>"; main.innerHTML=h;
+  // Buttons
+  const isLast = step===TOTAL-1;
+  const skipable = step>=4; // country, era, platform are skippable
+  h+=`<button class="cont-btn${canCont?" active":""}" onclick="${canCont?"goNext()":""}">${isLast?tx.find:tx.cont}</button>`;
+  if(skipable&&!isLast) h+=`<div class="skip-link"><button onclick="skipStep()">${tx.skip}</button></div>`;
+  main.innerHTML=h+"</div>";
 }
-
-function selectType(v){ state.type=v; render(); }
-function selectMood(v){ state.mood=v; render(); }
-function selectWho(v){ state.who=v; render(); }
-function selectTime(v){ state.time=v; render(); }
-function goNext(){ if(state.step<4)state.step++; render(); }
-function goBack(){ if(state.step>0)state.step--; render(); }
-function goBackResult(){ state.step=4; state.result=null; state.error=null; render(); }
 
 render();
 </script>
