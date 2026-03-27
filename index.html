@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>tonite.</title>
+<title>tonite. v3</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:Georgia,'Times New Roman',serif;background:#F5F0E8;color:#1a1a1a;min-height:100vh;}
@@ -429,6 +429,13 @@ M.innerHTML=h+’</div>’;
 }
 
 render();
+// Debug: if main is empty after 1 second, show error
+setTimeout(function(){
+var m=document.getElementById(“M”);
+if(!m||m.innerHTML.trim()===””){
+m.innerHTML=’<div style="padding:20px;font-family:sans-serif;color:red">JS Error: render() failed. Please clear cache and reload.</div>’;
+}
+},1000);
 </script>
 
 </body>
