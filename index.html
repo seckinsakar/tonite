@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tonite.</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #F5F0E8; color: #1a1a1a; min-height: 100vh; }
+.wrap { max-width: 520px; margin: 0 auto; padding: 0 24px; min-height: 100vh; display: flex; flex-direction: column; }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 0; }
+.logo { font-size: 22px; font-style: italic; cursor: pointer; letter-spacing: -0.5px; color: #8a8a7a; }
+.logo span { color: #C4A35A; }
+.nav-right { display: flex; gap: 12px; align-items: center; }
+.lang-toggle { display: flex; background: #1C1C1E; border-radius: 30px; padding: 3px; gap: 2px; }
+.lang-btn { background: transparent; color: #999; border: none; border-radius: 24px; padding: 5px 14px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Helvetica Neue', sans-serif; transition: all 0.2s; }
+.lang-btn.active { background: #C4A35A; color: #1C1C1E; }
+.lib-btn { background: none; border: 1px solid #D8D4CA; border-radius: 20px; padding: 5px 14px; cursor: pointer; font-size: 12px; color: #8a8a7a; font-family: 'Helvetica Neue', sans-serif; }
+main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 0 60px; }
+.screen { animation: fadeUp 0.3s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0.4} }
+
+/* Step bar */
+.step-bar { display: flex; gap: 6px; margin-bottom: 32px; }
+.step-dot { height: 2px; border-radius: 2px; flex: 1; background: #D8D4CA; opacity: 0.25; transition: all 0.3s; }
+.step-dot.done { background: #C4A35A; opacity: 0.5; }
+.step-dot.active { background: #C4A35A; opacity: 1; }
+
+/* Headings */
+h1.q { font-size: clamp(26px,5vw,40px); font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
+h1.q em { font-style: italic; color: #C4A35A; }
+.sub { font-size: 14px; color: #8a8a7a; margin-bottom: 32px; font-family: ‘Helvetica Neue’, sans-serif; }
+.back-btn { background: none; border: none; cursor: pointer; font-size: 13px; color: #8a8a7a; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 24px; padding: 0; display: block; }
+
+/* Cards */
+.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 32px; }
+.grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
+.dark-card { background: #1C1C1E; border-radius: 16px; padding: 20px 16px; cursor: pointer; transition: all 0.2s; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.dark-card:hover { transform: scale(1.02); }
+.dark-card.selected { background: #C4A35A; transform: scale(1.03); box-shadow: 0 6px 20px rgba(196,163,90,0.4); }
+.dark-card .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+.dark-card .label { font-size: 15px; font-weight: 700; color: #E5E5E5; font-family: Georgia, serif; margin-bottom: 3px; }
+.dark-card .sublabel { font-size: 12px; color: #888; font-family: ‘Helvetica Neue’, sans-serif; line-height: 1.3; }
+.dark-card.selected .sublabel { color: rgba(255,255,255,0.7); }
+
+/* Pills */
+.pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.pill { background: #3A3A3C; color: #E5E5E5; border: none; border-radius: 24px; padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; }
+.pill.selected { background: #C4A35A; color: #1C1C1E; box-shadow: 0 4px 12px rgba(196,163,90,0.4); }
+.plat-pill { background: #1C1C1E; color: #E5E5E5; border: none; border-radius: 24px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; }
+.plat-pill.selected { background: #C4A35A; color: #1C1C1E; }
+
+/* Continue btn */
+.cont-btn { width: 100%; padding: 16px; border-radius: 14px; background: #F0E8D0; color: #1C1C1E; border: none; cursor: default; font-size: 16px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; opacity: 0.4; }
+.cont-btn.active { opacity: 1; cursor: pointer; }
+.find-btn { width: 100%; padding: 16px; border-radius: 14px; background: #C4A35A; color: #1C1C1E; border: none; cursor: pointer; font-size: 15px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
+.outline-btn { width: 100%; padding: 12px 20px; border-radius: 14px; background: transparent; color: #8a8a7a; border: 1.5px solid #D8D4CA; cursor: pointer; font-size: 13px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
+.alt-btn { width: 100%; padding: 13px; border-radius: 14px; background: #C4A35A; color: #1C1C1E; border: none; cursor: pointer; font-size: 13px; font-weight: 700; font-family: ‘Helvetica Neue’, sans-serif; }
+
+/* Loading */
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 0; gap: 28px; }
+.loading-emoji { font-size: 56px; }
+.loading h2 { font-size: 20px; font-style: italic; margin-bottom: 8px; text-align: center; }
+.loading p { font-size: 14px; color: #8a8a7a; font-family: ‘Helvetica Neue’, sans-serif; text-align: center; }
+.dots { display: flex; gap: 10px; margin-top: 8px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #C4A35A; }
+.dot:nth-child(1){animation:pulse 1.2s 0ms ease-in-out infinite;}
+.dot:nth-child(2){animation:pulse 1.2s 220ms ease-in-out infinite;}
+.dot:nth-child(3){animation:pulse 1.2s 440ms ease-in-out infinite;}
+
+/* Result card */
+.result-card { background: #1C1C1E; border-radius: 24px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.result-visual { position: relative; min-height: 200px; background: #111; overflow: hidden; }
+.result-backdrop { width: 100%; height: 200px; object-fit: cover; opacity: 0.5; display: block; }
+.result-poster { position: absolute; bottom: 0; left: 20px; width: 90px; height: 135px; object-fit: cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.result-title-area { position: absolute; bottom: 0; right: 20px; padding: 16px 0; }
+.result-title-area.no-poster { left: 20px; }
+.result-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 8px; }
+.badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-family: ‘Helvetica Neue’, sans-serif; }
+.badge-genre { background: rgba(196,163,90,0.25); color: #C4A35A; font-weight: 700; }
+.badge-year { background: rgba(255,255,255,0.15); color: #fff; }
+.result-title { font-size: clamp(16px,3.5vw,22px); font-weight: 700; color: #fff; font-style: italic; line-height: 1.2; font-family: Georgia, serif; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+.result-orig { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; font-family: ‘Helvetica Neue’, sans-serif; }
+.result-body { padding: 20px 22px; }
+.meta-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.meta-badge { font-size: 12px; padding: 5px 12px; border-radius: 20px; font-family: ‘Helvetica Neue’, sans-serif; }
+.meta-rating { background: rgba(196,163,90,0.15); color: #C4A35A; font-weight: 700; font-size: 13px; text-decoration: none; }
+.meta-info { background: rgba(255,255,255,0.07); color: #aaa; }
+.meta-country { background: rgba(255,255,255,0.04); color: #777; font-size: 11px; }
+.crew-box { margin-bottom: 16px; padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 10px; }
+.crew-line { font-size: 12px; color: #bbb; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 5px; }
+.crew-line:last-child { margin-bottom: 0; }
+.crew-label { color: #C4A35A; font-weight: 600; }
+.overview { font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 16px; font-family: ‘Helvetica Neue’, sans-serif; }
+.action-row { display: flex; gap: 10px; }
+.action-btn { flex: 1; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 14px; font-family: ‘Helvetica Neue’, sans-serif; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.07); color: #999; }
+.action-btn.faved { background: rgba(196,163,90,0.2); border-color: #C4A35A; color: #C4A35A; }
+.action-btn.watched { background: rgba(76,175,80,0.15); border-color: #4caf50; color: #4caf50; }
+.btn-stack { display: flex; flex-direction: column; gap: 10px; }
+.no-poster-bg { background: linear-gradient(135deg,#1a2a4a 0%,#0d0d0d 100%); }
+
+/* Error */
+.error-box { background: #fff0f0; border: 1px solid #e05555; border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+.error-title { color: #e05555; font-size: 15px; font-weight: 600; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 8px; }
+.error-msg { color: #e05555; font-size: 12px; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 16px; line-height: 1.5; word-break: break-all; }
+
+/* Library */
+.lib-item { background: #1C1C1E; border-radius: 12px; margin-bottom: 10px; overflow: hidden; display: flex; align-items: center; }
+.lib-poster { width: 50px; height: 75px; object-fit: cover; flex-shrink: 0; }
+.lib-info { padding: 12px 14px; flex: 1; min-width: 0; }
+.lib-title { font-size: 14px; font-style: italic; color: #E5E5E5; font-family: Georgia, serif; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lib-meta { font-size: 11px; color: #888; font-family: ‘Helvetica Neue’, sans-serif; }
+.lib-remove { background: none; border: none; cursor: pointer; font-size: 18px; padding: 0 14px; flex-shrink: 0; }
+.section-label { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-family: ‘Helvetica Neue’, sans-serif; margin-bottom: 12px; }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="logo" onclick="restart()">tonite<span>.</span></div>
+    <div class="nav-right">
+      <button id="libBtn" class="lib-btn" onclick="toggleView('library')" style="display:none">📚 <span id="libCount">0</span></button>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnTR" onclick="setLang('TR')">TR</button>
+        <button class="lang-btn" id="btnEN" onclick="setLang('EN')">EN</button>
+      </div>
+    </div>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const TMDB_API_KEY = "335a2f58cda20c6358e159fb84253f86";
+const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMzVhMmY1OGNkYTIwYzYzNThlMTU5ZmI4NDI1M2Y4NiIsIm5iZiI6MTc3NDMzNjM2My44NDcwMDAxLCJzdWIiOiI2OWMyMzk2YjZkZTA3NTAzODU3MzVjMTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.bY93AvN9EnkVxWZQQdD1bCNjmqRZJlY08V8ipdQaq_o";
+const TMDB = "https://api.themoviedb.org/3";
+const IMG  = "https://image.tmdb.org/t/p/w500";
+const IMG_BG = "https://image.tmdb.org/t/p/w1280";
+
+const PLATFORM_IDS = { "Netflix":8,"Disney+":337,"Amazon Prime":9,"Apple TV+":350,"BluTV":341,"YouTube":192,"Gain":342 };
+const MOOD_GENRES = {
+  rahat:    {movie:[35,10749,16], tv:[35,10766,16]},
+  gulddur:  {movie:[35,10770],    tv:[35]},
+  heyecan:  {movie:[28,53,80],    tv:[80,9648,10759]},
+  duygu:    {movie:[18,10749],    tv:[18]},
+  dusundur: {movie:[878,9648,18], tv:[9648,10765]},
+  aksiyon:  {movie:[28,12,14],    tv:[10759,10765]},
+};
+
+let state = {
+  lang:"TR", view:"main", step:0,
+  type:null, mood:null, who:null, time:null, platforms:[],
+  result:null, loading:false, error:null,
+  shownIds:[],
+  favorites: JSON.parse(localStorage.getItem("t_favs")||"[]"),
+  watched:   JSON.parse(localStorage.getItem("t_wtch")||"[]"),
+};
+
+function saveFavs(a){ state.favorites=a; localStorage.setItem("t_favs",JSON.stringify(a)); }
+function saveWtch(a){ state.watched=a;   localStorage.setItem("t_wtch",JSON.stringify(a)); }
+function isFaved(id){ return state.favorites.some(f=>f.id===id); }
+function isWatched(id){ return state.watched.includes(id); }
+
+function setLang(l){
+  state.lang=l;
+  document.getElementById("btnTR").className="lang-btn"+(l==="TR"?" active":"");
+  document.getElementById("btnEN").className="lang-btn"+(l==="EN"?" active":"");
+  render();
+}
+function toggleView(v){ state.view = state.view===v?"main":v; render(); }
+function restart(){ state={...state,view:"main",step:0,type:null,mood:null,who:null,time:null,platforms:[],result:null,loading:false,error:null,shownIds:[]}; render(); }
+function togglePlatform(p){ const i=state.platforms.indexOf(p); if(i>=0)state.platforms.splice(i,1); else state.platforms.push(p); render(); }
+function toggleFav(id,title,year,rating,platform,poster){ const n=isFaved(id)?state.favorites.filter(f=>f.id!==id):[...state.favorites,{id,title,year,rating,platform,poster}]; saveFavs(n); render(); }
+function toggleWtch(id){ const n=isWatched(id)?state.watched.filter(x=>x!==id):[...state.watched,id]; saveWtch(n); render(); }
+function markAndNext(id){ toggleWtch(id); doFind([id]); }
+
+async function tmdbFetch(path, params={}){
+  const url=new URL(TMDB+path);
+  url.searchParams.set("language", state.lang==="TR"?"tr-TR":"en-US");
+  url.searchParams.set("api_key", TMDB_API_KEY);
+  Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));
+  // Try direct first, fallback to proxy
+  try {
+    const r=await fetch(url.toString(),{headers:{"Authorization":"Bearer "+TMDB_TOKEN}});
+    if(!r.ok) throw new Error("status "+r.status);
+    return r.json();
+  } catch(e1) {
+    // CORS proxy fallback
+    const proxyUrl = "https://api.allorigins.win/get?url="+encodeURIComponent(url.toString());
+    const r2 = await fetch(proxyUrl);
+    if(!r2.ok) throw new Error("Proxy "+r2.status);
+    const wrapper = await r2.json();
+    return JSON.parse(wrapper.contents);
+  }
+}
+
+async function doFind(excludeExtra=[]){
+  state.loading=true; state.error=null; state.result=null; state.view="main"; render();
+  const allExclude=[...state.shownIds,...excludeExtra,...state.watched];
+  try {
+    const tmdbType = state.type==="series"?"tv":"movie";
+    const isDoc    = state.type==="documentary";
+    const genreIds = isDoc ? [99] : (MOOD_GENRES[state.mood]?.[tmdbType]||[]);
+    const runtimes = {"1saat":[0,95],"2saat":[60,155],"3saat":[100,999],"siniryok":[0,999]};
+    const [minRT,maxRT] = runtimes[state.time]||[0,999];
+
+    const params = {
+      sort_by:"vote_average.desc",
+      "vote_count.gte":300,
+      "vote_average.gte":6.0,
+      page: Math.floor(Math.random()*8)+1,
+    };
+    if(genreIds.length>0) params.with_genres=genreIds.join("|");
+    if(state.platforms.length>0){
+      const ids=state.platforms.map(p=>PLATFORM_IDS[p]).filter(Boolean);
+      if(ids.length>0){ params.with_watch_providers=ids.join("|"); params.watch_region="TR"; }
+    }
+    if(tmdbType==="movie"){
+      if(minRT>0) params["with_runtime.gte"]=minRT;
+      if(maxRT<999) params["with_runtime.lte"]=maxRT;
+    }
+
+    let data = await tmdbFetch("/discover/"+tmdbType, params);
+    let results = (data.results||[]).filter(r=>!allExclude.includes(r.id));
+    if(results.length===0){
+      data = await tmdbFetch("/"+tmdbType+"/popular");
+      results = (data.results||[]).filter(r=>!allExclude.includes(r.id));
+    }
+    if(results.length===0) throw new Error(state.lang==="TR"?"Uygun içerik bulunamadı.":"No content found.");
+
+    const pick = results[Math.floor(Math.random()*Math.min(results.length,10))];
+    const details = await tmdbFetch("/"+tmdbType+"/"+pick.id, {append_to_response:"credits,watch/providers,external_ids"});
+
+    const title    = details.title||details.name||"";
+    const origTitle= details.original_title||details.original_name||"";
+    const year     = (details.release_date||details.first_air_date||"").slice(0,4);
+    const overview = details.overview||"";
+    const rating   = details.vote_average?details.vote_average.toFixed(1):"—";
+    const poster   = details.poster_path?IMG+details.poster_path:null;
+    const backdrop = details.backdrop_path?IMG_BG+details.backdrop_path:null;
+    const duration = details.runtime?(details.runtime+" dk"):(details.number_of_seasons?(details.number_of_seasons+(state.lang==="TR"?" sezon":" seasons")):"");
+    const credits  = details.credits||{};
+    const cast     = (credits.cast||[]).slice(0,3).map(a=>a.name).join(", ");
+    const director = (credits.crew||[]).find(c=>c.job==="Director")?.name||(details.created_by||[]).map(c=>c.name).join(", ")||"";
+    const genres   = (details.genres||[]).map(g=>g.name).join(" / ");
+    const country  = (details.production_countries||[]).map(c=>c.name).join(", ")||(details.origin_country||[]).join(", ");
+    const wpTR     = details["watch/providers"]?.results?.TR;
+    const flatrate = wpTR?.flatrate||[];
+    const platform = flatrate.length>0?flatrate.slice(0,2).map(p=>p.provider_name).join(" / "):(state.platforms.length>0?state.platforms[0]:"—");
+    const imdbId   = details.external_ids?.imdb_id||"";
+
+    state.shownIds.push(pick.id);
+    state.result = {id:pick.id,title,origTitle,year,overview,rating,poster,backdrop,duration,cast,director,genres,country,platform,imdbId};
+    state.step = 5;
+  } catch(e) {
+    state.error = e.message;
+    state.step  = 5;
+  }
+  state.loading = false;
+  render();
+}
+
+const T = {
+  TR:{q1a:"Bu akşam ne",q1b:"izleyelim",q1c:"?",q1s:"Film, dizi veya belgesel — birini seç.",
+      q2a:"Şu an nasıl",q2b:"hissediyorsun",q2c:"?",q2s:"Ruh halin her şeyi belirliyor.",
+      q3a:"Kiminle",q3b:"izliyorsun",q3c:"?",q3s:"Ve ne kadar vaktiniz var?",
+      q3t:"Ne kadar vakit var?",
+      q4a:"Hangi platformlarda",q4b:"aboneliğin var",q4c:"?",q4s:"Hepsini seçebilirsin.",
+      q5a:"Hazır mısın",q5b:"önerimi almaya",q5c:"?",q5s:"Ruh halin, vakit ve zevkin eşleştiriliyor.",
+      cont:"Devam →",find:"✦ Bu akşamki önerimi bul",
+      loadT:"Mükemmel önerin aranıyor…",loadS:"Ruh halin, vakit ve zevkin eşleştiriliyor.",
+      back:"← Geri",change:"← Kriterleri değiştir",
+      retry:"Tekrar Dene",another:"🔄 Başka öneri",
+      watched2:"✅ İzledim, başka öneri",startover:"← Başa dön",
+      fav:"🤍 Favorile",favd:"❤️ Favoride",
+      wtch:"⬜ İzledim",wtchd:"✅ İzlendi",
+      dir:"🎬 Yönetmen:",cast:"⭐ Oyuncular:",why:"NEDEN BU SEÇİLDİ",
+      lib:"Kitaplığım 📚",favs:"❤️ Favoriler",watched:"✅ İzlenenler",remove:"Kaldır",
+      err:"Hata",nope:"Henüz bir şey yok.",
+  },
+  EN:{q1a:"Tonight let's",q1b:"watch",q1c:"",q1s:"Movie, series or documentary — pick one.",
+      q2a:"How are you",q2b:"feeling",q2c:"?",q2s:"Your mood shapes everything.",
+      q3a:"Who are you",q3b:"watching with",q3c:"?",q3s:"And how much time do you have?",
+      q3t:"How much time?",
+      q4a:"Which platforms",q4b:"have you got",q4c:"?",q4s:"Select all that apply.",
+      q5a:"Ready to find",q5b:"your pick",q5c:"?",q5s:"Matching your mood, time and taste.",
+      cont:"Continue →",find:"✦ Find my pick for tonight",
+      loadT:"Finding your perfect pick…",loadS:"Matching your mood, time and taste.",
+      back:"← Back",change:"← Change criteria",
+      retry:"Try Again",another:"🔄 Another pick",
+      watched2:"✅ Watched it, next pick",startover:"← Start over",
+      fav:"🤍 Favorite",favd:"❤️ Favorited",
+      wtch:"⬜ Mark watched",wtchd:"✅ Watched",
+      dir:"🎬 Director:",cast:"⭐ Cast:",why:"WHY THIS PICK",
+      lib:"My Library 📚",favs:"❤️ Favorites",watched:"✅ Watched",remove:"Remove",
+      err:"Error",nope:"Nothing here yet.",
+  },
+};
+
+const TYPES=[
+  {id:"movie",  emoji:"🎬",TR:"Film",    EN:"Movie",      dTR:"Tek seferlik, bu akşam biter",dEN:"One story, done tonight"},
+  {id:"series", emoji:"📺",TR:"Dizi",     EN:"Series",     dTR:"Yeni bir şey başlat",         dEN:"Start something new"},
+  {id:"documentary",emoji:"🌍",TR:"Belgesel",EN:"Documentary",dTR:"Gerçek hikayeler",           dEN:"Real stories"},
+];
+const MOODS=[
+  {id:"rahat",   emoji:"😌",TR:"Rahat",    EN:"Chill",       dTR:"Kolay, düşünmeden izle",dEN:"Easy and relaxing"},
+  {id:"gulddur", emoji:"😂",TR:"Güldür",   EN:"Make me laugh",dTR:"Komedi, eğlence",      dEN:"Comedy and fun"},
+  {id:"heyecan", emoji:"😮",TR:"Heyecan",  EN:"Thrill me",   dTR:"Nefes kesen, heyecanlı",dEN:"Edge-of-your-seat"},
+  {id:"duygu",   emoji:"🥺",TR:"Duygu",    EN:"Emotional",   dTR:"Duygusal, anlamlı",     dEN:"Moving and meaningful"},
+  {id:"dusundur",emoji:"🧠",TR:"Düşündür", EN:"Mind-bending",dTR:"Zihin açıcı, derin",    dEN:"Deep and thought-provoking"},
+  {id:"aksiyon", emoji:"💥",TR:"Aksiyon",  EN:"Action",      dTR:"Hızlı, enerjik",        dEN:"Fast-paced"},
+];
+const WHO=[
+  {id:"yalniz",    emoji:"🧍",TR:"Yalnız",    EN:"Solo"},
+  {id:"sevgilim",  emoji:"💑",TR:"Sevgilim",  EN:"Partner"},
+  {id:"arkadaslar",emoji:"👥",TR:"Arkadaşlar",EN:"Friends"},
+];
+const TIME=[
+  {id:"1saat",   TR:"~1 saat",  EN:"~1 hour"},
+  {id:"2saat",   TR:"~2 saat",  EN:"~2 hours"},
+  {id:"3saat",   TR:"3+ saat",  EN:"3+ hours"},
+  {id:"siniryok",TR:"Sınır yok",EN:"No limit"},
+];
+const PLATS=["Netflix","Disney+","Amazon Prime","BluTV","Apple TV+","Gain","YouTube"];
+
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function darkCard(item, selected, onclick, compact){
+  const l=state.lang;
+  return `<div class="dark-card${selected?" selected":""}" onclick="${onclick}">
+    <span class="emoji">${item.emoji}</span>
+    <div class="label">${esc(item[l]||item.TR)}</div>
+    ${!compact&&(item["d"+l]||item.dTR)?`<div class="sublabel">${esc(item["d"+l]||item.dTR)}</div>`:""}
+  </div>`;
+}
+
+function stepBar(s){
+  let h='<div class="step-bar">';
+  for(let i=0;i<5;i++) h+=`<div class="step-dot ${i<s?"done":i===s?"active":""}"></div>`;
+  return h+"</div>";
+}
+
+function render(){
+  const l=state.lang; const tx=T[l]; const s=state;
+  const libCount=s.favorites.length+s.watched.length;
+  const libBtn=document.getElementById("libBtn");
+  if(libBtn){ libBtn.style.display=libCount>0?"block":"none"; document.getElementById("libCount").textContent=libCount; }
+
+  const main=document.getElementById("main");
+
+  // LIBRARY
+  if(s.view==="library"){
+    let h=`<div class="screen"><button class="back-btn" onclick="toggleView('library')">${tx.back}</button>
+    <h2 style="font-size:26px;font-weight:400;font-style:italic;margin-bottom:24px">${tx.lib}</h2>`;
+    if(s.favorites.length>0){
+      h+=`<div class="section-label" style="color:#C4A35A">${tx.favs}</div>`;
+      s.favorites.forEach(f=>{
+        h+=`<div class="lib-item">
+          ${f.poster?`<img class="lib-poster" src="${esc(f.poster)}" alt="">`:""}
+          <div class="lib-info"><div class="lib-title">${esc(f.title)}</div>
+          <div class="lib-meta">${esc(f.year)}${f.rating?` · ★${f.rating}`:""}${f.platform?` · ${esc(f.platform)}`:""}</div></div>
+          <button class="lib-remove" onclick="toggleFav(${f.id},'','','','','')">❤️</button>
+        </div>`;
+      });
+    }
+    if(s.watched.length>0){
+      h+=`<div class="section-label" style="color:#8a8a7a;margin-top:${s.favorites.length?24:0}px">${tx.watched} (${s.watched.length})</div>`;
+      s.watched.forEach(id=>{
+        h+=`<div class="lib-item" style="opacity:0.6;padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:13px;color:#999;font-family:'Helvetica Neue',sans-serif">#${id}</span>
+          <button style="background:none;border:none;cursor:pointer;font-size:12px;color:#666;font-family:'Helvetica Neue',sans-serif" onclick="toggleWtch(${id})">${tx.remove}</button>
+        </div>`;
+      });
+    }
+    if(!s.favorites.length&&!s.watched.length) h+=`<p style="color:#8a8a7a;font-size:14px;font-family:'Helvetica Neue',sans-serif">${tx.nope}</p>`;
+    h+="</div>";
+    main.innerHTML=h; return;
+  }
+
+  // LOADING
+  if(s.loading){
+    main.innerHTML=`<div class="loading screen">
+      <div class="loading-emoji">🎬</div>
+      <div><h2>${tx.loadT}</h2><p>${tx.loadS}</p></div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>`; return;
+  }
+
+  // RESULT
+  if(!s.loading&&s.step===5){
+    let h=`<div class="screen"><button class="back-btn" onclick="goBackResult()">${tx.change}</button>`;
+    if(s.error){
+      h+=`<div class="error-box"><div class="error-title">⚠️ ${tx.err}</div><div class="error-msg">${esc(s.error)}</div>
+      <button class="find-btn" onclick="doFind([])">${tx.retry}</button></div>`;
+    } else if(s.result){
+      const r=s.result;
+      const faved=isFaved(r.id); const wtchd=isWatched(r.id);
+      const favArgs=`${r.id},'${esc(r.title)}','${esc(r.year)}','${esc(r.rating)}','${esc(r.platform)}','${esc(r.poster||"")}'`;
+      h+=`<div class="result-card">
+        <div class="result-visual${!r.backdrop&&!r.poster?" no-poster-bg":""}">
+          ${r.backdrop?`<img class="result-backdrop" src="${esc(r.backdrop)}" alt="">`:""}
+          ${r.poster?`<img class="result-poster" src="${esc(r.poster)}" alt="${esc(r.title)}">`:""}
+          <div class="result-title-area${!r.poster?" no-poster":""}">
+            <div class="result-badges">
+              ${r.genres?`<span class="badge badge-genre">${esc(r.genres.split(" / ")[0])}</span>`:""}
+              ${r.year?`<span class="badge badge-year">${esc(r.year)}</span>`:""}
+            </div>
+            <div class="result-title">${esc(r.title)}</div>
+            ${r.origTitle&&r.origTitle!==r.title?`<div class="result-orig">${esc(r.origTitle)}</div>`:""}
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="meta-row">
+            ${r.rating&&r.rating!=="0.0"?`<a href="${r.imdbId?"https://www.imdb.com/title/"+r.imdbId:"#"}" target="_blank" class="meta-badge meta-rating">★ ${esc(r.rating)} TMDB</a>`:""}
+            ${r.duration?`<span class="meta-badge meta-info">⏱ ${esc(r.duration)}</span>`:""}
+            ${r.platform&&r.platform!=="—"?`<span class="meta-badge meta-info">${esc(r.platform)}</span>`:""}
+            ${r.country?`<span class="meta-badge meta-country">${esc(r.country.split(",")[0])}</span>`:""}
+          </div>
+          ${r.director||r.cast?`<div class="crew-box">
+            ${r.director?`<div class="crew-line"><span class="crew-label">${tx.dir}</span> ${esc(r.director)}</div>`:""}
+            ${r.cast?`<div class="crew-line"><span class="crew-label">${tx.cast}</span> ${esc(r.cast)}</div>`:""}
+          </div>`:""}
+          ${r.overview?`<p class="overview">${esc(r.overview)}</p>`:""}
+          <div class="action-row">
+            <button class="action-btn${faved?" faved":""}" onclick="toggleFav(${favArgs})">${faved?tx.favd:tx.fav}</button>
+            <button class="action-btn${wtchd?" watched":""}" onclick="toggleWtch(${r.id})">${wtchd?tx.wtchd:tx.wtch}</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-stack">
+        <button class="find-btn" onclick="doFind([${r.id}])">${tx.another}</button>
+        <button class="alt-btn" onclick="markAndNext(${r.id})">${tx.watched2}</button>
+        <button class="outline-btn" onclick="restart()">${tx.startover}</button>
+      </div>`;
+    }
+    h+="</div>"; main.innerHTML=h; return;
+  }
+
+  // STEPS
+  const canCont=(s.step===0&&s.type)||(s.step===1&&s.mood)||(s.step===2&&s.who)||(s.step===3&&s.who&&s.time)||(s.step===4);
+  let h=`<div class="screen">${stepBar(s.step)}`;
+  if(s.step>0) h+=`<button class="back-btn" onclick="goBack()">${tx.back}</button>`;
+
+  if(s.step===0){
+    h+=`<h1 class="q">${tx.q1a} <em>${tx.q1b}</em>${tx.q1c}</h1><p class="sub">${tx.q1s}</p>
+    <div class="grid3">${TYPES.map(o=>darkCard(o,s.type===o.id,`selectType('${o.id}')`,false)).join("")}</div>`;
+  } else if(s.step===1){
+    h+=`<h1 class="q">${tx.q2a} <em>${tx.q2b}</em>${tx.q2c}</h1><p class="sub">${tx.q2s}</p>
+    <div class="grid2">${MOODS.map(o=>darkCard(o,s.mood===o.id,`selectMood('${o.id}')`,false)).join("")}</div>`;
+  } else if(s.step===2){
+    h+=`<h1 class="q">${tx.q3a} <em>${tx.q3b}</em>${tx.q3c}</h1><p class="sub">${tx.q3s}</p>
+    <div class="grid3">${WHO.map(o=>darkCard(o,s.who===o.id,`selectWho('${o.id}')`,true)).join("")}</div>
+    <p style="font-size:12px;color:#8a8a7a;margin-bottom:12px;font-family:'Helvetica Neue',sans-serif;letter-spacing:0.06em;text-transform:uppercase">${tx.q3t}</p>
+    <div class="pills">${TIME.map(o=>`<button class="pill${s.time===o.id?" selected":""}" onclick="selectTime('${o.id}')">${esc(o[l])}</button>`).join("")}</div>`;
+  } else if(s.step===3){
+    h+=`<h1 class="q">${tx.q4a} <em>${tx.q4b}</em>${tx.q4c}</h1><p class="sub">${tx.q4s}</p>
+    <div class="pills">${PLATS.map(p=>`<button class="plat-pill${s.platforms.includes(p)?" selected":""}" onclick="togglePlatform('${p}')">${esc(p)}</button>`).join("")}</div>`;
+  } else if(s.step===4){
+    h+=`<h1 class="q">${tx.q5a} <em>${tx.q5b}</em>${tx.q5c}</h1><p class="sub">${tx.q5s}</p>
+    <div style="display:flex;justify-content:center;font-size:64px;margin-bottom:32px">🎬</div>`;
+  }
+
+  if(s.step<4){
+    h+=`<button class="cont-btn${canCont?" active":""}" onclick="${canCont?"goNext()":""}">${tx.cont}</button>`;
+  } else {
+    h+=`<button class="find-btn" onclick="doFind([])">${tx.find}</button>`;
+  }
+  h+="</div>"; main.innerHTML=h;
+}
+
+function selectType(v){ state.type=v; render(); }
+function selectMood(v){ state.mood=v; render(); }
+function selectWho(v){ state.who=v; render(); }
+function selectTime(v){ state.time=v; render(); }
+function goNext(){ if(state.step<4)state.step++; render(); }
+function goBack(){ if(state.step>0)state.step--; render(); }
+function goBackResult(){ state.step=4; state.result=null; state.error=null; render(); }
+
+render();
+</script>
+
+</body>
+</html>
