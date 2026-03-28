@@ -198,7 +198,8 @@ cast:(cr.cast||[]).slice(0,3).map(function(a){return a.name}).join(”, “),
 dir:dir?dir.name:((dt.created_by||[]).map(function(c){return c.name}).join(”, “)||””),
 gen:(dt.genres||[]).map(function(g){return g.name}).join(” / “),
 coun:(dt.production_countries||[]).map(function(c){return c.name}).join(”, “),
-plat:((wp.flatrate||[]).slice(0,2).map(function(x){return x.provider_name}).join(” / “))||(S.plats.length?S.plats[0]:””)
+plat:((wp.flatrate||[]).slice(0,2).map(function(x){return x.provider_name}).join(“ / “))||(S.plats.length?S.plats[0]:””),
+imdbId:(dt.external_ids||{}).imdb_id||””
 };
 S.step=7;
 }catch(ex){S.err=ex.message;S.step=7}
@@ -279,6 +280,13 @@ if(r.cast)h+=’<div class="cl"><span class="clb">’+(tr?“Oyuncular: “:“C
 h+=’</div>’;
 }
 if(r.ov)h+=’<p class="ov">’+esc(r.ov)+’</p>’;
+// IMDb + Trailer buttons
+var imdbUrl=r.imdbId?’https://www.imdb.com/title/’+r.imdbId:’https://www.imdb.com/find?q=’+encodeURIComponent(r.title);
+var trailerUrl=’https://www.youtube.com/results?search_query=’+encodeURIComponent(r.title+’ ‘+r.year+’ trailer’);
+h+=’<div style="display:flex;gap:8px;margin-bottom:14px">’;
+h+=’<a href="’+imdbUrl+’" target="_blank" style="flex:1;display:block;text-align:center;background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);border-radius:10px;padding:9px;font-size:13px;font-weight:700;font-family:Helvetica Neue,sans-serif;text-decoration:none">⭐ IMDb</a>’;
+h+=’<a href="’+trailerUrl+’" target="_blank" style="flex:1;display:block;text-align:center;background:rgba(255,0,0,0.1);color:#ff4444;border:1px solid rgba(255,0,0,0.2);border-radius:10px;padding:9px;font-size:13px;font-weight:700;font-family:Helvetica Neue,sans-serif;text-decoration:none">▶ ‘+(tr?’Fragman’:’Trailer’)+’</a>’;
+h+=’</div>’;
 h+=’<div class="arow">’;
 h+=’<button class=“ab’+(fv?” fav”:””)+’” onclick=“if(isFav(’+r.id+’))savF(S.favs.filter(function(f){return f.id!==’+r.id+’}));else savF(S.favs.concat([{id:’+r.id+’,title:'’+esc(r.title.replace(/’/g,””))+’',year:'’+r.year+’',rat:'’+r.rat+’',plat:'’+esc(r.plat||””)+’',post:'’+esc(r.post||””)+’'}]));render()”>’+(fv?(tr?“Favoride”:“Favorited”):(tr?“Favorile”:“Favorite”))+’</button>’;
 h+=’<button class=“ab’+(wt?” wtc”:””)+’” onclick=“if(isW(’+r.id+’))savW(S.wtch.filter(function(x){return x!==’+r.id+’}));else savW(S.wtch.concat([’+r.id+’]));render()”>’+(wt?(tr?“Izlendi”:“Watched”):(tr?“Izledim”:“Mark watched”))+’</button>’;
